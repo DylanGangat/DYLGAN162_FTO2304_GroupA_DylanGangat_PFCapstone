@@ -1,7 +1,11 @@
-import "./Home.css";
+import PodcastGrid from "../components/PodcastGrid";
 
 const Home = () => {
-  return <div>Home Page</div>;
+  return (
+    <main className="bg-orange-100">
+      <PodcastGrid />
+    </main>
+  );
 };
 
 export default Home;
