@@ -2,26 +2,26 @@ const PodcastFilterPanel = () => {
   return (
     <div className="border-secondary mt-8 grid gap-4 border-t-2 pt-8 sm:auto-cols-fr sm:grid-flow-col">
       <div className="w-full">
-        <label htmlFor="input-label" className="mb-2 block text-sm font-bold">
+        <label htmlFor="filter" className="mb-2 block text-sm font-bold">
           Filter By Title
         </label>
         <input
           name="searchTitle"
           type="text"
-          id="input-label"
-          className="bg-secondary block w-full rounded-md px-4 py-3 text-base text-sm focus:border-blue-500 focus:ring-blue-500"
+          id="filter"
+          className="bg-secondary focus:border-accent-500 focus:ring-accent-500 block w-full rounded-md px-4 py-3 text-base text-sm"
           placeholder="Filter By Title"
         />
       </div>
 
       <div className="w-full">
-        <label htmlFor="sorting-label" className="mb-2 block text-sm font-bold">
+        <label htmlFor="sorting" className="mb-2 block text-sm font-bold">
           Sorted By:
         </label>
         <select
           name="selectedSorting"
-          id="sorting-label"
-          className="bg-secondary block w-full rounded-lg px-4 py-3 text-base text-sm focus:border-blue-500 focus:ring-blue-500"
+          id="sorting"
+          className="bg-secondary focus:border-accent-500 focus:ring-accent-500 block w-full rounded-lg px-4 py-3 text-base text-sm"
         >
           <option value="">Choose Order</option>
           <option value="a-z">A-Z</option>
@@ -32,13 +32,13 @@ const PodcastFilterPanel = () => {
       </div>
 
       <div className="w-full">
-        <label htmlFor="genre-label" className="mb-2 block text-sm font-bold">
+        <label htmlFor="genre" className="mb-2 block text-sm font-bold">
           Sort By Genre:
         </label>
         <select
           name="selectedGenre"
-          id="genre-label"
-          className="bg-secondary block w-full rounded-lg px-4 py-3 text-base text-sm focus:border-blue-500 focus:ring-blue-500"
+          id="genre"
+          className="bg-secondary focus:border-accent-500 focus:ring-accent-500 block w-full rounded-lg px-4 py-3 text-base text-sm"
         >
           <option value="">Choose Genre</option>
           <option value="1">Personal Growth</option>
