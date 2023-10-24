@@ -1,6 +1,6 @@
 const PodcastFilterPanel = () => {
   return (
-    <div className="mt-8 grid gap-4 sm:auto-cols-fr sm:grid-flow-col">
+    <div className="border-secondary mt-8 grid gap-4 border-t-2 pt-8 sm:auto-cols-fr sm:grid-flow-col">
       <div className="w-full">
         <label htmlFor="input-label" className="mb-2 block text-sm font-bold">
           Filter By Title

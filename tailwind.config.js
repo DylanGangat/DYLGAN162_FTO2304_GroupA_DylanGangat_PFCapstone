@@ -5,6 +5,7 @@ export default {
     extend: {
       gridTemplateColumns: {
         podcast: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
+        episode: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))",
       },
       marginInline: {
         auto: "auto",

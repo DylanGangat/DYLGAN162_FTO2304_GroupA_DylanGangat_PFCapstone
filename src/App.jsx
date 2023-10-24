@@ -10,12 +10,14 @@ function App() {
     <>
       <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/podcast/:id" element={<Podcast />} />
-        <Route path="/favorite" element={<Favorite />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
+      <main className="bg-background text-base">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/podcast/:id" element={<Podcast />} />
+          <Route path="/favorite" element={<Favorite />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </main>
     </>
   );
 }
