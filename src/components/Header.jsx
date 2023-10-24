@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="py-6">
+    <header className="py-6 bg-background border-b-2 border-secondary text-base">
       <div className="mx-auto max-w-6xl px-8">
         <nav className="flex flex-wrap items-center justify-between gap-4">
           <Link to="/" className="logo">
