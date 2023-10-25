@@ -1,11 +1,8 @@
 const PodcastFilterPanel = () => {
   return (
-    <div className="mt-8 grid gap-4 border-t-2 border-secondary pt-8 sm:auto-cols-fr sm:grid-flow-col">
-      <div className="w-full">
-        <label
-          htmlFor="filter"
-          className="mb-2 block text-sm font-bold"
-        >
+    <div className="mt-8 grid  gap-4 border-t-2 border-secondary pt-8 sm:auto-cols-fr sm:grid-flow-col">
+      <div className="max-w-sm">
+        <label htmlFor="filter" className="mb-2 block text-sm font-bold">
           Filter By Title
         </label>
         <input
@@ -17,7 +14,7 @@ const PodcastFilterPanel = () => {
         />
       </div>
 
-      <div className="w-full">
+      <div className="max-w-sm">
         <label htmlFor="sorting" className="mb-2 block text-sm font-bold">
           Sorted By:
         </label>
@@ -34,7 +31,7 @@ const PodcastFilterPanel = () => {
         </select>
       </div>
 
-      <div className="w-full">
+      {/* <div className="w-full">
         <label htmlFor="genre" className="mb-2 block text-sm font-bold">
           Sort By Genre:
         </label>
@@ -54,7 +51,7 @@ const PodcastFilterPanel = () => {
           <option value="8">News</option>
           <option value="9">Kids and Family</option>
         </select>
-      </div>
+      </div> */}
     </div>
   );
 };
