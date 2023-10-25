@@ -1,15 +1,18 @@
 const PodcastFilterPanel = () => {
   return (
-    <div className="border-secondary mt-8 grid gap-4 border-t-2 pt-8 sm:auto-cols-fr sm:grid-flow-col">
+    <div className="mt-8 grid gap-4 border-t-2 border-secondary pt-8 sm:auto-cols-fr sm:grid-flow-col">
       <div className="w-full">
-        <label htmlFor="filter" className="mb-2 block text-sm font-bold">
+        <label
+          htmlFor="filter"
+          className="mb-2 block text-sm font-bold"
+        >
           Filter By Title
         </label>
         <input
           name="searchTitle"
           type="text"
           id="filter"
-          className="bg-secondary focus:border-accent-500 focus:ring-accent-500 block w-full rounded-md px-4 py-3 text-base text-sm"
+          className="block w-full rounded-md bg-secondary px-4 py-3 text-sm focus:border-accent-500 focus:ring-accent-500"
           placeholder="Filter By Title"
         />
       </div>
@@ -21,7 +24,7 @@ const PodcastFilterPanel = () => {
         <select
           name="selectedSorting"
           id="sorting"
-          className="bg-secondary focus:border-accent-500 focus:ring-accent-500 block w-full rounded-lg px-4 py-3 text-base text-sm"
+          className="block w-full rounded-lg bg-secondary px-4 py-3 text-sm focus:border-accent-500 focus:ring-accent-500"
         >
           <option value="">Choose Order</option>
           <option value="a-z">A-Z</option>
@@ -38,7 +41,7 @@ const PodcastFilterPanel = () => {
         <select
           name="selectedGenre"
           id="genre"
-          className="bg-secondary focus:border-accent-500 focus:ring-accent-500 block w-full rounded-lg px-4 py-3 text-base text-sm"
+          className="block w-full rounded-lg bg-secondary px-4 py-3 text-sm focus:border-accent-500 focus:ring-accent-500"
         >
           <option value="">Choose Genre</option>
           <option value="1">Personal Growth</option>

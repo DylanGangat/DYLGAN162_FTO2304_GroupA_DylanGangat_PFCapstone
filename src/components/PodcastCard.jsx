@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const PodcastCard = () => {
   return (
-    <div className="bg-secondary text-base overflow-hidden rounded-lg p-6">
+    <div className="overflow-hidden rounded-lg bg-secondary p-6 text-base">
       <div>
         <Link to="/podcast/123">
           <img
@@ -15,10 +15,12 @@ const PodcastCard = () => {
 
       <div>
         <Link to="/podcast/123">
-          <h3 className="mt-3 text-lg font-bold">Something Was Wrong</h3>
+          <h3 className="font-heading mt-3 text-lg font-bold">
+            Something Was Wrong
+          </h3>
         </Link>
 
-        <span className="text-sm font-bold ">Seasons: 14</span>
+        <span className="text-sm font-bold">Seasons: 14</span>
         <p className="mt-4">
           Something Was Wrong is an Iris Award-winning true-crime docuseries
           about...

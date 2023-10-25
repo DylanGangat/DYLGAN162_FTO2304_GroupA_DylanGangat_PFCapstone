@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        heading: ["Mulish", "sans-serif"],
+        body: ["Space Mono", "monospace"],
+      },
       gridTemplateColumns: {
         podcast: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
         episode: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))",
@@ -11,7 +15,7 @@ export default {
         auto: "auto",
       },
       colors: {
-        base: "#F1F1F1",
+        body: "#F1F1F1",
         background: "#0F0F0F",
         primary: "#F1F1F1",
         secondary: "#272727",

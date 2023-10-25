@@ -10,7 +10,7 @@ const PodcastSeasonDropdown = () => {
       <select
         name="selectedSorting"
         id="seasonDropdownLabel"
-        className="bg-secondary block w-full rounded-lg px-4 py-3 text-base text-sm focus:border-accent-500 focus:ring-accent-500"
+        className="bg-secondary block w-full rounded-lg px-4 py-3 text-sm focus:border-accent-500 focus:ring-accent-500"
       >
         <option value="">Select a Season</option>
         <option value="0">Season 1</option>

@@ -3,9 +3,11 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const PodcastEpisodeCard = () => {
   return (
-    <div className="border-secondary border-b-2 py-4">
+    <div className="border-b-2 border-secondary py-4">
       <div>
-        <h4 className="text-lg font-bold">She Had the Medical Mind</h4>
+        <h4 className="text-lg font-bold">
+          She Had the Medical Mind
+        </h4>
         <span className="inline-block text-sm font-semibold">Episode 1</span>
         <p className="mt-3">
           Tee befriends Sylvia and feels compelled to help her.
@@ -17,7 +19,7 @@ const PodcastEpisodeCard = () => {
             controls
           ></audio>
           <FontAwesomeIcon
-            className="hover:text-accent-500 focus:text-accent-500 col-span-1 cursor-pointer justify-self-end transition duration-300"
+            className="col-span-1 cursor-pointer justify-self-end transition duration-300 hover:text-accent-500 focus:text-accent-500"
             icon={faHeart}
             size="xl"
           />

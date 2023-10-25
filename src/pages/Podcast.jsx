@@ -8,7 +8,7 @@ const Podcast = () => {
         <div className="grid gap-8 sm:auto-cols-fr sm:grid-flow-col">
           <div>
             <span className="font-bold">Back</span>
-            <h1 className="from-accent-300 to-accent-600 mt-8 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent">
+            <h1 className="font-heading mt-8 bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text text-3xl font-bold text-transparent">
               This Is Actually Happening
             </h1>
             <p className="mt-8">
@@ -35,20 +35,19 @@ const Podcast = () => {
         </div>
 
         <div className="mt-8">
-          
           <PodcastSeasonDropdown />
 
           <div className="mt-6 text-center font-bold">
-            <h2 className="text-2xl">Season 1</h2>
-            <p className="mt-2 text-sm">Total Episodes: 12</p>
+            <h2 className="font-heading text-2xl">Season 1</h2>
+            <p className="mt-2 text-sm ">Total Episodes: 12</p>
           </div>
 
           <div className="mt-6">
-            <h3 className="from-accent-300 to-accent-600 bg-gradient-to-r bg-clip-text font-bold text-transparent">
+            <h3 className="font-heading bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text font-bold tracking-wide text-transparent">
               Episodes
             </h3>
 
-            <div className="border-secondary grid-cols-episode mt-6 grid gap-x-8 border-t-2">
+            <div className="mt-6 grid grid-cols-episode gap-x-8 border-t-2 border-secondary">
               <PodcastEpisodeCard />
               <PodcastEpisodeCard />
               <PodcastEpisodeCard />
