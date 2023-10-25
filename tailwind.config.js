@@ -33,6 +33,12 @@ export default {
           950: "#1a0000",
         },
       },
+      maxWidth: {
+        255: "255px",
+      },
+      minHeight: {
+        custom: `calc(100vh - 220px)`,
+      },
     },
   },
   plugins: [],

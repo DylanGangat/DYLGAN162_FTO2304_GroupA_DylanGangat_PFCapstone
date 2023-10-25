@@ -1,41 +1,58 @@
+import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-const PodcastCard = () => {
+const PodcastCard = ({ podcast, filterPodcastsByGenre }) => {
+  const { id, title, description, image, seasons, genres, updated } = podcast;
+
+  const GENRES = {
+    1: "Personal Growth",
+    2: "True Crime and Investigative Journalism",
+    3: "History",
+    4: "Comedy",
+    5: "Entertainment",
+    6: "Business",
+    7: "Fiction",
+    8: "News",
+    9: "Kids and Family",
+  };
+
   return (
-    <div className="overflow-hidden rounded-lg bg-secondary p-6">
+    <div className="overflow-hidden rounded-lg">
       <div>
-        <Link to="/podcast/123">
+        <Link to={`/podcast/${id}`}>
           <img
             className="h-auto w-full rounded-lg"
-            src="https://content.production.cdn.art19.com/images/cc/e5/0a/08/cce50a08-d77d-490e-8c68-17725541b0ca/9dcebd4019d57b9551799479fa226e2a79026be5e2743c7aef19eac53532a29d66954da6e8dbdda8219b059a59c0abe6dba6049892b10dfb2f25ed90d6fe8d9a.jpeg"
-            alt="Something Was Wrong podcast show"
+            src={image}
+            alt={`${title} podcast show`}
           />
         </Link>
       </div>
 
       <div>
-        <Link to="/podcast/123">
-          <h3 className="font-heading mt-3 text-lg font-bold">
-            Something Was Wrong
-          </h3>
+        <Link to={`/podcast/${id}`}>
+          <h3 className="font-heading mt-3 text-lg font-bold">{title}</h3>
         </Link>
 
-        <span className="text-sm font-bold">Seasons: 14</span>
-        <p className="mt-4">
-          Something Was Wrong is an Iris Award-winning true-crime docuseries
-          about...
-        </p>
-        <div className="mt-3 flex flex-wrap gap-1 text-sm font-semibold">
-          <span>Personal Growth</span>
-          <span>History</span>
-          <span>Business</span>
+        <span className="text-sm font-bold">{`Seasons: ${seasons}`}</span>
+        {/* <p className="mt-4">{`${description.slice(0, 55)}...`}</p> */}
+        <div className="mt-3 flex flex-wrap gap-2 text-sm font-semibold">
+          {genres.map((genre) => (
+            <span
+              className="cursor-pointer rounded-lg bg-secondary p-1 transition duration-300 hover:bg-accent-500
+           focus:bg-accent-500"
+              key={genre}
+              onClick={() => filterPodcastsByGenre(genre)}
+            >
+              {GENRES[genre]}
+            </span>
+          ))}
         </div>
         <span className="mt-3 inline-block text-sm font-semibold">
-          Updated: 2022-11-03T07:00:00.000Z
+          Updated: {format(new Date(updated), "d MMM y")}
         </span>
       </div>
     </div>
   );
-}
+};
 
-export default PodcastCard
+export default PodcastCard;

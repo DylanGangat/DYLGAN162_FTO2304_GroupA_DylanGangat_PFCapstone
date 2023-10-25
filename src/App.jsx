@@ -11,7 +11,7 @@ function App() {
     <>
       <Header />
 
-      <main className="bg-background text-body font-body">
+      <main className="min-h-custom bg-background text-body font-body">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/podcast/:id" element={<Podcast />} />
