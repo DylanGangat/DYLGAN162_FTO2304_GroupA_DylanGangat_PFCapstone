@@ -10,7 +10,7 @@ const FavoriteSortDropdown = () => {
       <select
         name="selectedSorting"
         id="favoriteSortDropdownLabel"
-        className="bg-secondary focus:border-accent-500 focus:ring-accent-500 block w-full rounded-lg px-4 py-3 text-base text-sm"
+        className="bg-secondary focus:border-accent-500 focus:ring-accent-500 block w-full rounded-lg px-4 py-3 text-sm"
       >
         <option value="">Choose Order</option>
         <option value="a-z">A-Z</option>

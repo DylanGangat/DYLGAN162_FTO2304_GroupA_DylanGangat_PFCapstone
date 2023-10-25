@@ -9,7 +9,7 @@ const PodcastGrid = () => {
           Browse Podcasts
         </h1>
         <PodcastFilterPanel />
-        <div className="mt-8 grid grid-cols-podcast gap-4 border-t-2 border-secondary py-8">
+        <div className="mt-8 grid grid-cols-podcast gap-6 border-t-2 border-secondary py-8">
           <PodcastCard />
           <PodcastCard />
           <PodcastCard />

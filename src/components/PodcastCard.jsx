@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const PodcastCard = () => {
   return (
-    <div className="overflow-hidden rounded-lg bg-secondary p-6 text-base">
+    <div className="overflow-hidden rounded-lg bg-secondary p-6">
       <div>
         <Link to="/podcast/123">
           <img
