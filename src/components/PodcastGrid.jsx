@@ -1,8 +1,11 @@
-import PodcastFilterPanel from "./PodcastFilterPanel";
-import PodcastCard from "./PodcastCard";
 import { useEffect, useRef, useState } from "react";
 import { GridLoader } from "react-spinners";
+
+import PodcastFilterPanel from "./PodcastFilterPanel";
+import PodcastCard from "./PodcastCard";
 import Carousel from "./Carousel";
+
+import Fuse from "fuse.js";
 
 const PodcastGrid = () => {
   const [podcastData, setPodcastData] = useState([]);
@@ -13,6 +16,10 @@ const PodcastGrid = () => {
   const [selectedSortOption, setSelectedSortOption] = useState("");
 
   const scrollToRef = useRef(null);
+  const fuse = new Fuse(podcastData, {
+    keys: ["title"],
+    includeScore: true,
+  });
 
   const fetchPodcastsData = async () => {
     try {
@@ -37,20 +44,20 @@ const PodcastGrid = () => {
     );
 
     scrollToRef.current.scrollIntoView({
-      behavior: "smooth", 
-      block: "start", 
+      behavior: "smooth",
+      block: "start",
     });
   };
 
   const handleSearchFilter = (name) => {
     setSelectedSortOption("");
+    setSearchInput(name);
 
-    setSearchInput(name.toLowerCase());
-    setPodcasts(
-      podcastData.filter((podcast) =>
-        podcast.title.toLowerCase().includes(name),
-      ),
-    );
+    const results = searchInput
+      ? fuse.search(searchInput).map((result) => result.item)
+      : podcastData;
+
+    setPodcasts(results);
   };
 
   const handleSortFilter = (value) => {
@@ -104,7 +111,15 @@ const PodcastGrid = () => {
   return (
     <section className="py-8">
       <div className="mx-auto max-w-6xl px-8">
-        <Carousel cards={podcastData} handleGenreFilter={handleGenreFilter} />
+        {loading ? (
+          <div className="min-h-carousel w-full py-8">
+            <div className="flex">
+              <GridLoader className="mx-auto " color="#ff0000" />
+            </div>
+          </div>
+        ) : (
+          <Carousel cards={podcastData} handleGenreFilter={handleGenreFilter} />
+        )}
 
         <h1
           ref={scrollToRef}
