@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-const PodcastCard = ({ podcast, filterPodcastsByGenre }) => {
+const PodcastCard = ({ podcast, handleGenreFilter }) => {
   const { id, title, description, image, seasons, genres, updated } = podcast;
 
   const GENRES = {
@@ -17,7 +17,7 @@ const PodcastCard = ({ podcast, filterPodcastsByGenre }) => {
   };
 
   return (
-    <div className="overflow-hidden rounded-lg">
+    <div className="max-w-255 overflow-hidden rounded-lg">
       <div>
         <Link to={`/podcast/${id}`}>
           <img
@@ -41,7 +41,7 @@ const PodcastCard = ({ podcast, filterPodcastsByGenre }) => {
               className="cursor-pointer rounded-lg bg-secondary p-1 transition duration-300 hover:bg-accent-500
            focus:bg-accent-500"
               key={genre}
-              onClick={() => filterPodcastsByGenre(genre)}
+              onClick={() => handleGenreFilter(genre)}
             >
               {GENRES[genre]}
             </span>

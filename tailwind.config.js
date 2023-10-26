@@ -8,7 +8,7 @@ export default {
         body: ["Space Mono", "monospace"],
       },
       gridTemplateColumns: {
-        podcast: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
+        podcast: "repeat(auto-fit, minmax(min(100%, 250px), 250px))",
         episode: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))",
       },
       marginInline: {

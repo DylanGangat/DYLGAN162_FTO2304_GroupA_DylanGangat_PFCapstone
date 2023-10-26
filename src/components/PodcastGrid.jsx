@@ -6,6 +6,7 @@ import { GridLoader } from "react-spinners";
 const PodcastGrid = () => {
   const [podcastData, setPodcastData] = useState([]);
   const [podcasts, setPodcasts] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -23,11 +24,21 @@ const PodcastGrid = () => {
     }
   };
 
-  const filterPodcastsByGenre = (genreId) => {
+  const handleGenreFilter = (genreId) => {
+    setSearchInput("");
     setPodcasts(
       podcastData.filter((podcast) => podcast.genres.includes(genreId)),
     );
     scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSearchFilter = (name) => {
+    setSearchInput(name.toLowerCase());
+    setPodcasts(
+      podcastData.filter((podcast) =>
+        podcast.title.toLowerCase().includes(name),
+      ),
+    );
   };
 
   useEffect(() => {
@@ -41,24 +52,33 @@ const PodcastGrid = () => {
           Browse Podcasts
         </h1>
 
-        <PodcastFilterPanel />
+        <PodcastFilterPanel
+          handleSearchFilter={handleSearchFilter}
+          searchInput={searchInput}
+        />
 
-        <div className="mt-8 grid grid-cols-podcast gap-6 border-t-2 border-secondary py-8 ">
-          {loading ? (
+        {loading ? (
+          <div className="mt-8 grid gap-6 py-8">
             <GridLoader className="mx-auto" color="#ff0000" />
-          ) : (
-            podcasts &&
-            podcasts.map((podcast) => (
-              <PodcastCard
-                key={podcast.id}
-                podcast={podcast}
-                filterPodcastsByGenre={filterPodcastsByGenre}
-              />
-            ))
-          )}
+          </div>
+        ) : (
+          <div className="mt-8 grid grid-cols-podcast gap-6 border-t-2 border-secondary py-8">
+            {podcasts &&
+              podcasts.map((podcast) => (
+                <PodcastCard
+                  key={podcast.id}
+                  podcast={podcast}
+                  handleGenreFilter={handleGenreFilter}
+                />
+              ))}
+          </div>
+        )}
 
-          {error && <h2>Error: {error} :(</h2>}
-        </div>
+        {error && (
+          <h2 className="mt-8 border-t-2 border-secondary py-8">
+            Error: {error} :(
+          </h2>
+        )}
       </div>
     </section>
   );
