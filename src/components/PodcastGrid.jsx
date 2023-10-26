@@ -118,7 +118,11 @@ const PodcastGrid = () => {
             </div>
           </div>
         ) : (
-          <Carousel cards={podcastData} handleGenreFilter={handleGenreFilter} />
+          <Carousel
+            cards={podcastData}
+            handleGenreFilter={handleGenreFilter}
+            error={error}
+          />
         )}
 
         <h1
@@ -149,11 +153,8 @@ const PodcastGrid = () => {
               ))}
           </div>
         )}
-        {error && (
-          <h2 className="mt-8 border-t-2 border-secondary py-8">
-            Error: {error} :(
-          </h2>
-        )}
+
+        {error && <h2 className="mt-8 py-8 text-center">Error: {error} :(</h2>}
       </div>
     </section>
   );

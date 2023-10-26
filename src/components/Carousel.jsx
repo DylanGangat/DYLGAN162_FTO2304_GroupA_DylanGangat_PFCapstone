@@ -3,7 +3,7 @@ import CarouselCard from "./CarouselCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-const Carousel = ({ cards, handleGenreFilter }) => {
+const Carousel = ({ cards, handleGenreFilter, error }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const SLIDES_TO_SHOW = 4;
   const carouselCards = cards.slice(12, 40);
@@ -22,14 +22,11 @@ const Carousel = ({ cards, handleGenreFilter }) => {
 
   return (
     <div className="w-full py-8">
-      <h1
-       
-        className="bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text font-heading text-xl text-center font-bold text-transparent"
-      >
+      <h2 className="bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text text-center font-heading text-xl font-bold text-transparent">
         You might be interested in these
-      </h1>
+      </h2>
 
-      <div className="min-h-carousel flex gap-6 overflow-x-hidden transition-transform duration-300 ease-in-out pt-8">
+      <div className="min-h-carousel flex gap-6 overflow-x-hidden pt-8 transition-transform duration-300 ease-in-out">
         {carouselCards
           .slice(currentSlide, currentSlide + SLIDES_TO_SHOW)
           .map((card) => (
@@ -39,6 +36,8 @@ const Carousel = ({ cards, handleGenreFilter }) => {
               handleGenreFilter={handleGenreFilter}
             />
           ))}
+
+        {error && <h2 className="mx-auto mt-8 py-8">Error: {error} :(</h2>}
       </div>
 
       <div className="mt-6 flex items-center justify-center gap-4">

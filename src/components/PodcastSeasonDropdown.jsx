@@ -1,4 +1,8 @@
-const PodcastSeasonDropdown = () => {
+const PodcastSeasonDropdown = ({
+  podcast,
+  handleSeasonFilter,
+  selectedSeasonOption,
+}) => {
   return (
     <div className="mx-auto max-w-sm text-center">
       <label
@@ -10,14 +14,17 @@ const PodcastSeasonDropdown = () => {
       <select
         name="selectedSorting"
         id="seasonDropdownLabel"
-        className="bg-secondary block w-full rounded-lg px-4 py-3 text-sm focus:border-accent-500 focus:ring-accent-500"
+        className="block w-full rounded-lg bg-secondary px-4 py-3 text-sm focus:border-accent-500 focus:ring-accent-500"
+        onChange={(e) => handleSeasonFilter(e.target.value)}
+        value={selectedSeasonOption}
       >
         <option value="">Select a Season</option>
-        <option value="0">Season 1</option>
-        <option value="1">Season 2</option>
-        <option value="2">Season 3</option>
-        <option value="3">Season 4</option>
-        <option value="4">Season 5</option>
+        {podcast?.seasons &&
+          podcast.seasons.map((option) => (
+            <option key={option.season} value={option.season}>
+              {option.title}
+            </option>
+          ))}
       </select>
     </div>
   );
