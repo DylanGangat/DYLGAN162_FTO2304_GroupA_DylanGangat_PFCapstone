@@ -1,4 +1,9 @@
-const PodcastFilterPanel = ({ handleSearchFilter, searchInput }) => {
+const PodcastFilterPanel = ({
+  handleSearchFilter,
+  searchInput,
+  handleSortFilter,
+  selectedSortOption,
+}) => {
   const SORTING_OPTIONS = [
     { value: "", label: "Choose Order" },
     { value: "az", label: "A-Z" },
@@ -33,6 +38,8 @@ const PodcastFilterPanel = ({ handleSearchFilter, searchInput }) => {
           name="selectedSorting"
           id="sorting"
           className="block w-full rounded-lg bg-secondary px-4 py-3 text-sm focus:border-accent-500 focus:ring-accent-500"
+          value={selectedSortOption}
+          onChange={(e) => handleSortFilter(e.target.value)}
         >
           {SORTING_OPTIONS.map((option) => (
             <option key={option.value} value={option.value}>

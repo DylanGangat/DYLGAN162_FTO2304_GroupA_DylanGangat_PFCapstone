@@ -5,10 +5,11 @@ import { GridLoader } from "react-spinners";
 
 const PodcastGrid = () => {
   const [podcastData, setPodcastData] = useState([]);
-  const [podcasts, setPodcasts] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [podcasts, setPodcasts] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [selectedSortOption, setSelectedSortOption] = useState("");
 
   const fetchPodcastsData = async () => {
     try {
@@ -26,6 +27,8 @@ const PodcastGrid = () => {
 
   const handleGenreFilter = (genreId) => {
     setSearchInput("");
+    setSelectedSortOption("");
+
     setPodcasts(
       podcastData.filter((podcast) => podcast.genres.includes(genreId)),
     );
@@ -33,12 +36,58 @@ const PodcastGrid = () => {
   };
 
   const handleSearchFilter = (name) => {
+    setSelectedSortOption("");
+
     setSearchInput(name.toLowerCase());
     setPodcasts(
       podcastData.filter((podcast) =>
         podcast.title.toLowerCase().includes(name),
       ),
     );
+  };
+
+  const handleSortFilter = (value) => {
+    setSearchInput("");
+
+    setSelectedSortOption(value);
+
+    if (value === "az") {
+      const result = podcastData
+        .map((podcast) => podcast)
+        .sort((a, b) => a.title.localeCompare(b.title));
+
+      setPodcasts(result);
+    }
+
+    if (value === "za") {
+      const result = podcastData
+        .map((podcast) => podcast)
+        .sort((a, b) => b.title.localeCompare(a.title));
+
+      setPodcasts(result);
+    }
+
+    if (value === "ascending") {
+      const result = podcastData
+        .map((podcast) => podcast)
+        .sort(
+          (a, b) =>
+            new Date(a.updated).getTime() - new Date(b.updated).getTime(),
+        );
+
+      setPodcasts(result);
+    }
+
+    if (value === "descending") {
+      const result = podcastData
+        .map((podcast) => podcast)
+        .sort(
+          (a, b) =>
+            new Date(b.updated).getTime() - new Date(a.updated).getTime(),
+        );
+
+      setPodcasts(result);
+    }
   };
 
   useEffect(() => {
@@ -48,13 +97,15 @@ const PodcastGrid = () => {
   return (
     <section className="py-8">
       <div className="mx-auto max-w-6xl px-8">
-        <h1 className="font-heading bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text text-3xl font-bold text-transparent">
+        <h1 className="bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text font-heading text-3xl font-bold text-transparent">
           Browse Podcasts
         </h1>
 
         <PodcastFilterPanel
           handleSearchFilter={handleSearchFilter}
+          handleSortFilter={handleSortFilter}
           searchInput={searchInput}
+          selectedSortOption={selectedSortOption}
         />
 
         {loading ? (
