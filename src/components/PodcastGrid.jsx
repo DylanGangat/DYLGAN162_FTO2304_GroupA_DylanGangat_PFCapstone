@@ -1,7 +1,8 @@
 import PodcastFilterPanel from "./PodcastFilterPanel";
 import PodcastCard from "./PodcastCard";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GridLoader } from "react-spinners";
+import Carousel from "./Carousel";
 
 const PodcastGrid = () => {
   const [podcastData, setPodcastData] = useState([]);
@@ -10,6 +11,8 @@ const PodcastGrid = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [selectedSortOption, setSelectedSortOption] = useState("");
+
+  const scrollToRef = useRef(null);
 
   const fetchPodcastsData = async () => {
     try {
@@ -32,7 +35,11 @@ const PodcastGrid = () => {
     setPodcasts(
       podcastData.filter((podcast) => podcast.genres.includes(genreId)),
     );
-    scrollTo({ top: 0, behavior: "smooth" });
+
+    scrollToRef.current.scrollIntoView({
+      behavior: "smooth", 
+      block: "start", 
+    });
   };
 
   const handleSearchFilter = (name) => {
@@ -97,17 +104,20 @@ const PodcastGrid = () => {
   return (
     <section className="py-8">
       <div className="mx-auto max-w-6xl px-8">
-        <h1 className="bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text font-heading text-3xl font-bold text-transparent">
+        <Carousel cards={podcastData} handleGenreFilter={handleGenreFilter} />
+
+        <h1
+          ref={scrollToRef}
+          className="bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text font-heading text-3xl font-bold text-transparent"
+        >
           Browse Podcasts
         </h1>
-
         <PodcastFilterPanel
           handleSearchFilter={handleSearchFilter}
           handleSortFilter={handleSortFilter}
           searchInput={searchInput}
           selectedSortOption={selectedSortOption}
         />
-
         {loading ? (
           <div className="mt-8 grid gap-6 py-8">
             <GridLoader className="mx-auto" color="#ff0000" />
@@ -124,7 +134,6 @@ const PodcastGrid = () => {
               ))}
           </div>
         )}
-
         {error && (
           <h2 className="mt-8 border-t-2 border-secondary py-8">
             Error: {error} :(

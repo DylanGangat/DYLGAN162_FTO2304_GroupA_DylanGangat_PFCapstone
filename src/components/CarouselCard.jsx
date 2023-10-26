@@ -1,8 +1,7 @@
-import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-const PodcastCard = ({ podcast, handleGenreFilter }) => {
-  const { id, title, description, image, seasons, genres, updated } = podcast;
+const CarouselCard = ({ card, handleGenreFilter }) => {
+  const { title, id, image, seasons, genres } = card;
 
   const GENRES = {
     1: "Personal Growth",
@@ -17,11 +16,11 @@ const PodcastCard = ({ podcast, handleGenreFilter }) => {
   };
 
   return (
-    <div className="max-w-255 overflow-hidden rounded-lg">
+    <div className="min-w-255 overflow-hidden rounded-lg">
       <div>
         <Link to={`/podcast/${id}`}>
           <img
-            className="h-auto w-full rounded-lg"
+            className="h-auto w-full rounded-lg "
             src={image}
             alt={`${title} podcast show`}
           />
@@ -39,7 +38,7 @@ const PodcastCard = ({ podcast, handleGenreFilter }) => {
           {genres.map((genre) => (
             <span
               className="cursor-pointer rounded-lg bg-secondary p-1 transition duration-300 hover:bg-accent-500
-           focus:bg-accent-500"
+                    focus:bg-accent-500"
               key={genre}
               onClick={() => handleGenreFilter(genre)}
             >
@@ -47,12 +46,9 @@ const PodcastCard = ({ podcast, handleGenreFilter }) => {
             </span>
           ))}
         </div>
-        <span className="mt-3 inline-block text-sm font-semibold">
-          Updated: {format(new Date(updated), "d MMM y")}
-        </span>
       </div>
     </div>
   );
 };
 
-export default PodcastCard;
+export default CarouselCard;

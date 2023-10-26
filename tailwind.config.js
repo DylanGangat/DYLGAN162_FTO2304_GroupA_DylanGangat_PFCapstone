@@ -34,10 +34,14 @@ export default {
         },
       },
       maxWidth: {
-        255: "255px",
+        255: "250px",
+      },
+      minWidth: {
+        255: "250px",
       },
       minHeight: {
         custom: `calc(100vh - 220px)`,
+        carousel: "470px",
       },
     },
   },
