@@ -5,7 +5,7 @@ const Favorite = () => {
   return (
     <section className="py-8">
       <div className="mx-auto max-w-6xl px-8">
-        <h1 className="font-heading bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text text-3xl font-bold text-transparent">
+        <h1 className="bg-gradient-to-r from-accent-400 to-accent-500 bg-clip-text font-heading text-3xl font-bold text-transparent">
           Favorites
         </h1>
 

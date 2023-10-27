@@ -12,7 +12,11 @@ const Podcast = () => {
   const [podcast, setPodcast] = useState([]);
   const [season, setSeason] = useState({});
   const [selectedSeasonOption, setSelectedSeasonOption] = useState("");
-
+  const LOCAL_STORAGE_KEY = "favorite-episodes";
+  const [favorites, setFavorites] = useState(() => {
+    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+  });
+  console.log(favorites);
   const { id } = useParams();
 
   const fetchPodcastData = async (id) => {
@@ -46,6 +50,12 @@ const Podcast = () => {
     fetchPodcastData(id);
   }, [id]);
 
+  useEffect(() => {
+    if (favorites.length > 0) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favorites));
+    }
+  }, [favorites]);
+
   if (error) {
     return (
       <section className="py-8">
@@ -55,6 +65,7 @@ const Podcast = () => {
       </section>
     );
   }
+
   const { title, episodes, image } = season;
 
   return (
@@ -80,7 +91,7 @@ const Podcast = () => {
                 <img
                   src={image}
                   className="mx-auto h-auto w-full max-w-255 rounded-lg object-cover"
-                  alt=""
+                  alt={`${title} podcast show`}
                 />
 
                 <h2 className="mt-8 font-heading text-2xl">{title}</h2>
@@ -97,7 +108,11 @@ const Podcast = () => {
                     episodes.map((episode) => (
                       <PodcastEpisodeCard
                         key={episode.episode}
+                        podcast={podcast}
+                        season={season}
                         episodeData={episode}
+                        favorites={favorites}
+                        setFavorites={setFavorites}
                       />
                     ))}
                 </div>

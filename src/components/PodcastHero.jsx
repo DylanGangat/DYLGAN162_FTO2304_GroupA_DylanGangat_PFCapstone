@@ -24,7 +24,7 @@ const PodcastHero = ({ podcast }) => {
           <div className="mt-6 flex flex-wrap gap-2 text-sm font-semibold">
             {podcast.genres.slice(1).map((genre) => (
               <span
-                className="cursor-pointer rounded-lg bg-secondary p-1 transition duration-300 hover:bg-accent-500
+                className="cursor-pointer rounded-lg bg-secondary px-2 py-1.5 transition duration-300 hover:bg-accent-500
            focus:bg-accent-500"
                 key={genre}
               >
@@ -33,7 +33,6 @@ const PodcastHero = ({ podcast }) => {
             ))}
           </div>
         )}
-        
       </div>
       <figure>
         <img
