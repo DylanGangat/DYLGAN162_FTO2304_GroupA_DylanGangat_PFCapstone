@@ -1,7 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-const FavoriteCard = ({ favorite, setFavorites }) => {
+const FavoriteCard = ({
+  favorite,
+  setFavoritesData,
+  setSelectedSortOption,
+}) => {
   const {
     podcast,
     title,
@@ -15,7 +19,8 @@ const FavoriteCard = ({ favorite, setFavorites }) => {
   } = favorite;
 
   const handleRemoveFavorite = (id) => {
-    setFavorites((prevFavorites) =>
+    setSelectedSortOption("");
+    setFavoritesData((prevFavorites) =>
       prevFavorites.filter((favorite) => favorite.id !== id),
     );
   };

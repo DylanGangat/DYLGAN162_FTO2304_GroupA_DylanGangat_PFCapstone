@@ -5,55 +5,58 @@ import FavoriteSortDropdown from "../components/FavoriteSortDropdown";
 const Favorite = () => {
   const LOCAL_STORAGE_KEY = "favorite-episodes";
   const [selectedSortOption, setSelectedSortOption] = useState("");
+  const [favoritesData, setFavoritesData] = useState(() => {
+    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+  });
   const [favorites, setFavorites] = useState(() => {
     return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
   });
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favorites));
-  }, [favorites]);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favoritesData));
+    setFavorites(favoritesData);
+  }, [favoritesData]);
 
   const handleSortFilter = (value) => {
     setSelectedSortOption(value);
 
-    // if (value === "az") {
-    //   const result = favorites
-    //     .map((podcast) => podcast)
-    //     .sort((a, b) => a.title.localeCompare(b.title));
+    if (value === "az") {
+      const result = favoritesData
+        .map((podcast) => podcast)
+        .sort((a, b) => a.podcast.localeCompare(b.podcast));
 
-    //   setFavorites(result);
-    // }
+      setFavorites(result);
+    }
 
-    // if (value === "za") {
-    //   const result = favorites
-    //     .map((podcast) => podcast)
-    //     .sort((a, b) => b.title.localeCompare(a.title));
+    if (value === "za") {
+      const result = favoritesData
+        .map((podcast) => podcast)
+        .sort((a, b) => b.podcast.localeCompare(a.podcast));
 
-    //   setFavorites(result);
-    // }
+      setFavorites(result);
+    }
 
-    // if (value === "ascending") {
-    //   const result = favorites
-    //     .map((podcast) => podcast)
-    //     .sort(
-    //       (a, b) =>
-    //         new Date(a.updated).getTime() - new Date(b.updated).getTime(),
-    //     );
+    if (value === "ascending") {
+      const result = favoritesData
+        .map((podcast) => podcast)
+        .sort(
+          (a, b) =>
+            new Date(a.updated).getTime() - new Date(b.updated).getTime(),
+        );
 
-    //   setFavorites(result);
-    // }
+      setFavorites(result);
+    }
 
-    // if (value === "descending") {
-    //   const result = favorites
-    //     .map((podcast) => podcast)
-    //     .sort(
-    //       (a, b) =>
-    //         new Date(b.updated).getTime() - new Date(a.updated).getTime(),
-    //     );
+    if (value === "descending") {
+      const result = favoritesData
+        .map((podcast) => podcast)
+        .sort(
+          (a, b) =>
+            new Date(b.updated).getTime() - new Date(a.updated).getTime(),
+        );
 
-    //   setFavorites(result);
-    // }
-    console.log(value);
+      setFavorites(result);
+    }
   };
 
   return (
@@ -74,7 +77,8 @@ const Favorite = () => {
               <FavoriteCard
                 key={favorite.id}
                 favorite={favorite}
-                setFavorites={setFavorites}
+                setFavoritesData={setFavoritesData}
+                setSelectedSortOption={setSelectedSortOption}
               />
             ))}
           </div>
