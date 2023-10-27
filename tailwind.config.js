@@ -10,6 +10,7 @@ export default {
       gridTemplateColumns: {
         podcast: "repeat(auto-fit, minmax(min(100%, 250px), 250px))",
         episode: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))",
+        favorite: "repeat(auto-fit, minmax(min(100%, 400px), 800px))",
       },
       marginInline: {
         auto: "auto",

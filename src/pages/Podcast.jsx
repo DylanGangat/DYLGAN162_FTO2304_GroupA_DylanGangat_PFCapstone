@@ -16,7 +16,7 @@ const Podcast = () => {
   const [favorites, setFavorites] = useState(() => {
     return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
   });
-  console.log(favorites);
+
   const { id } = useParams();
 
   const fetchPodcastData = async (id) => {

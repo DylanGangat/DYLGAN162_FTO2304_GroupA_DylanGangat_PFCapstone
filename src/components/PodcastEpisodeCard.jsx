@@ -2,6 +2,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
+import { v4 as uuid } from "uuid";
 
 const PodcastEpisodeCard = ({
   episodeData,
@@ -15,13 +16,14 @@ const PodcastEpisodeCard = ({
   const handleClickedFavorite = (podcast, season, episode) => {
     const newFavorite = {
       podcast: podcast.title,
-      season: season.title,
+      season: season.season,
       updated: format(new Date(podcast.updated), "d MMM y"),
-      favorited: format(new Date(), "d MMM y"),
-      time: format(new Date(), "HH : mm : ss"),
+      favorited: format(new Date(), "d MMM y, h:mm a"),
       title: episode.title,
       episode: episode.episode,
       description: episode.description,
+      file: episode.file,
+      id: uuid(),
     };
 
     const isDuplicate = favorites.some((item) => {
@@ -32,8 +34,29 @@ const PodcastEpisodeCard = ({
       );
     });
 
+    const arrangeInOrder = (updateFavorites) => {
+      return updateFavorites
+        .map((episode) => episode)
+        .sort((a, b) => {
+          // First, compare by "podcast"
+          if (a.podcast !== b.podcast) {
+            return a.podcast.localeCompare(b.podcast);
+          }
+          // If the "podcast" is the same, compare by "season"
+          if (a.season !== b.season) {
+            return a.season - b.season;
+          }
+          // If both "podcast" and "season" are the same, compare by "episode"
+          return a.episode - b.episode;
+        });
+    };
+
     if (!isDuplicate) {
-      setFavorites((prevEpisodes) => [...prevEpisodes, newFavorite]);
+      // Clone the existing favorites, add the newFavorite, and then sort
+      setFavorites((prevEpisodes) => {
+        const newFavorites = [...prevEpisodes, newFavorite];
+        return arrangeInOrder(newFavorites);
+      });
     }
   };
 

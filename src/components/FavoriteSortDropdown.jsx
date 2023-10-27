@@ -1,4 +1,12 @@
-const FavoriteSortDropdown = () => {
+const FavoriteSortDropdown = ({ handleSortFilter, selectedSortOption }) => {
+  const SORTING_OPTIONS = [
+    { value: "", label: "Choose Order" },
+    { value: "az", label: "A-Z" },
+    { value: "za", label: "Z-A" },
+    { value: "ascending", label: "Date Updated (Ascending Order)" },
+    { value: "descending", label: "Date Updated (Decending Order)" },
+  ];
+
   return (
     <div className="mx-auto mr-0 mt-8 max-w-xs">
       <label
@@ -10,16 +18,18 @@ const FavoriteSortDropdown = () => {
       <select
         name="selectedSorting"
         id="favoriteSortDropdownLabel"
-        className="bg-secondary focus:border-accent-500 focus:ring-accent-500 block w-full rounded-lg px-4 py-3 text-sm"
+        className="block w-full rounded-lg bg-secondary px-4 py-3 text-sm focus:border-accent-500 focus:ring-accent-500"
+        value={selectedSortOption}
+        onChange={(e) => handleSortFilter(e.target.value)}
       >
-        <option value="">Choose Order</option>
-        <option value="a-z">A-Z</option>
-        <option value="z-a">Z-A</option>
-        <option value="ascending">Date Updated (Ascending Order)</option>
-        <option value="descending">Date Updated (Decending Order)</option>
+        {SORTING_OPTIONS.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </select>
     </div>
   );
-}
+};
 
 export default FavoriteSortDropdown;
