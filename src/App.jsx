@@ -5,7 +5,7 @@ import Favorite from "./pages/Favorite";
 import Header from "./components/Header";
 import "./App.css";
 import Footer from "./components/Footer";
-// import LoginForm from "./components/LoginForm";
+import LoginAuth from "./pages/LoginAuth";
 
 function App() {
   return (
@@ -13,10 +13,10 @@ function App() {
       <Header />
 
       <main className="min-h-custom bg-background font-body text-body selection:bg-secondary selection:text-white">
-        {/* <LoginForm /> */}
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LoginAuth />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/podcast/:id" element={<Podcast />} />
           <Route path="/favorite" element={<Favorite />} />
           <Route path="*" element={<Home />} />

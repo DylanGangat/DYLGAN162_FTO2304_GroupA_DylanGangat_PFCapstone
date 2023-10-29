@@ -4,7 +4,7 @@ import { faWaveSquare } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
-    <header className="text-body font-body border-b-2 border-secondary bg-background py-6 font-bold tracking-wide">
+    <header className="border-b-2 border-secondary bg-background py-6 font-body font-bold tracking-wide text-body">
       <div className="mx-auto max-w-6xl px-8">
         <nav className="flex flex-wrap items-center justify-between gap-4">
           <Link
@@ -14,7 +14,6 @@ const Header = () => {
           >
             <FontAwesomeIcon
               icon={faWaveSquare}
-              beat
               size="lg"
               style={{ color: "#ff0000" }}
             />
@@ -26,7 +25,7 @@ const Header = () => {
               className="cursor-pointer transition duration-300 hover:text-accent-500
           focus:text-accent-500"
             >
-              <Link to="/">HOME</Link>
+              <Link to="/home">HOME</Link>
             </li>
             <li
               className="cursor-pointer transition duration-300 hover:text-accent-500

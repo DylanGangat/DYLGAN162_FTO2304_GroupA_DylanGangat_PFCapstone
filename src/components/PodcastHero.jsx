@@ -11,7 +11,7 @@ const PodcastHero = ({ podcast }) => {
         <span
           className="cursor-pointer font-bold transition duration-300 hover:text-accent-500
            focus:text-accent-500"
-          onClick={() => navigate("/Home")}
+          onClick={() => navigate("/home")}
         >
           Back
         </span>

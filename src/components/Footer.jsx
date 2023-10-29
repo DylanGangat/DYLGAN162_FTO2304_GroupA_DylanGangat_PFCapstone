@@ -25,7 +25,7 @@ const Footer = () => {
               className="cursor-pointer transition duration-300 hover:text-accent-500
           focus:text-accent-500"
             >
-              <Link to="/">HOME</Link>
+              <Link to="/home">HOME</Link>
             </li>
             <li
               className="cursor-pointer transition duration-300 hover:text-accent-500
