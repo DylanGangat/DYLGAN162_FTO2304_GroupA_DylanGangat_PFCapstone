@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWaveSquare } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import { supabase } from "../../config";
+import { supabase } from "../config/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -59,8 +59,8 @@ const Header = () => {
 
             {user && (
               <button
-                className="inline-flex rounded-lg bg-secondary px-3 py-2 transition duration-300 hover:bg-transparent
-          hover:text-accent-500 focus:bg-transparent focus:text-accent-500"
+                className="inline-flex rounded-lg bg-secondary px-3 py-2 transition duration-300 hover:bg-accent-500
+           focus:bg-accent-500"
                 onClick={handleSignOut}
               >
                 LOG OUT

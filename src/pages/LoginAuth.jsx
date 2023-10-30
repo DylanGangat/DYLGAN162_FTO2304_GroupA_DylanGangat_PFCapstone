@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { Auth } from "@supabase/auth-ui-react";
-import { supabase } from "../../config";
+import { supabase } from "../config/supabaseClient";
 
 const LoginAuth = () => {
   const navigate = useNavigate();
 
   const handleAuthStateChange = async (event) => {
-    if (event === "SIGNED_IN") {
+    if (event === "SIGNED_IN" || event === "USER_UPDATED") {
       navigate("/home");
     }
   };
