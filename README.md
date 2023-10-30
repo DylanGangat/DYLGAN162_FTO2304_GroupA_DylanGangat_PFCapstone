@@ -5,7 +5,7 @@
 Wavify is a podcast app that allows users to login, browse various podcast shows, play episodes, and track their favorite episodes.
 
 wavifypodcast -
-[https://wavifypodcast.netlify.app/](https://wavifypodcast.netlify.app/)
+[https://wavifypodcast-v2.netlify.app/](https://wavifypodcast-v2.netlify.app)
 
 ## Table of Contents
 
