@@ -37,6 +37,7 @@ wavifypodcast -
 ## Features
 
 - **User Authentication with Supabase**: Allow users to securely log in and out of the app using Supabase authentication.
+- **Dynamic Episodes Management**: Utilize the power of Supabase database for displaying, updating, and deleting podcast episodes, providing users with a seamless and real-time experience.
 - **Browse Podcast Shows**: Explore a wide range of podcast shows with detailed information.
 - **Play Episodes**: Listen to podcast episodes directly within the app.
 - **Track Favorites**: Mark your favorite episodes and save them for later.
