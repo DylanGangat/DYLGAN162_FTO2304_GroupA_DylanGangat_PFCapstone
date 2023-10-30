@@ -1,14 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
-import { v4 as uuid } from "uuid";
+// import { v4 as uuid } from "uuid";
+import { supabase } from "../config/supabaseClient";
 
 const PodcastEpisodeCard = ({
   episodeData,
   season,
   podcast,
-  favorites,
-  setFavorites,
+  favoritesData,
+  setFavoritesData,
 }) => {
   const { title, description, file, episode } = episodeData;
 
@@ -22,10 +23,9 @@ const PodcastEpisodeCard = ({
       episode: episode.episode,
       description: episode.description,
       file: episode.file,
-      id: uuid(),
     };
 
-    const isDuplicate = favorites.some((item) => {
+    const isDuplicate = favoritesData.some((item) => {
       return (
         item.podcast === newFavorite.podcast &&
         item.title === newFavorite.title &&
@@ -33,29 +33,22 @@ const PodcastEpisodeCard = ({
       );
     });
 
-    const arrangeInOrder = (updateFavorites) => {
-      return updateFavorites
-        .map((episode) => episode)
-        .sort((a, b) => {
-          // First, compare by "podcast"
-          if (a.podcast !== b.podcast) {
-            return a.podcast.localeCompare(b.podcast);
-          }
-          // If the "podcast" is the same, compare by "season"
-          if (a.season !== b.season) {
-            return a.season - b.season;
-          }
-          // If both "podcast" and "season" are the same, compare by "episode"
-          return a.episode - b.episode;
-        });
+    // Add newFavorite to supabase database
+    const handleSubmit = async () => {
+      const { data } = await supabase
+        .from("favorites")
+        .insert([{ ...newFavorite }])
+        .select();
     };
 
     if (!isDuplicate) {
       // Clone the existing favorites, add the newFavorite, and then sort
-      setFavorites((prevEpisodes) => {
+      setFavoritesData((prevEpisodes) => {
         const newFavorites = [...prevEpisodes, newFavorite];
-        return arrangeInOrder(newFavorites);
+        return newFavorites;
       });
+
+      handleSubmit();
     }
   };
 

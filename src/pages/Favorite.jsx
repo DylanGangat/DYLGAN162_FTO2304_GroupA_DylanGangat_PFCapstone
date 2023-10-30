@@ -1,27 +1,28 @@
 import { useEffect, useState } from "react";
 import FavoriteCard from "../components/FavoriteCard";
 import FavoriteSortDropdown from "../components/FavoriteSortDropdown";
+import { supabase } from "../config/supabaseClient";
 
 const Favorite = () => {
-  const LOCAL_STORAGE_KEY = "favorite-episodes";
   const [selectedSortOption, setSelectedSortOption] = useState("");
-  const [favoritesData, setFavoritesData] = useState(() => {
-    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
-  });
-  const [favorites, setFavorites] = useState(() => {
-    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
-  });
+  const [favorites, setFavorites] = useState([]);
+  const [favoritesData, setFavoritesData] = useState(favorites);
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favoritesData));
-    setFavorites(favoritesData);
+    const fetchEpisodes = async () => {
+      const { data } = await supabase.from("favorites").select("*");
+
+      setFavorites(data);
+    };
+
+    fetchEpisodes();
   }, [favoritesData]);
 
   const handleSortFilter = (value) => {
     setSelectedSortOption(value);
 
     if (value === "az") {
-      const result = favoritesData
+      const result = favorites
         .map((podcast) => podcast)
         .sort((a, b) => a.podcast.localeCompare(b.podcast));
 
@@ -29,7 +30,7 @@ const Favorite = () => {
     }
 
     if (value === "za") {
-      const result = favoritesData
+      const result = favorites
         .map((podcast) => podcast)
         .sort((a, b) => b.podcast.localeCompare(a.podcast));
 
@@ -37,7 +38,7 @@ const Favorite = () => {
     }
 
     if (value === "ascending") {
-      const result = favoritesData
+      const result = favorites
         .map((podcast) => podcast)
         .sort(
           (a, b) =>
@@ -48,7 +49,7 @@ const Favorite = () => {
     }
 
     if (value === "descending") {
-      const result = favoritesData
+      const result = favorites
         .map((podcast) => podcast)
         .sort(
           (a, b) =>

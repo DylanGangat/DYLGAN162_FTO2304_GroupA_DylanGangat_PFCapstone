@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { supabase } from "../config/supabaseClient";
 
 const FavoriteCard = ({
   favorite,
@@ -18,10 +19,14 @@ const FavoriteCard = ({
     file,
   } = favorite;
 
-  const handleRemoveFavorite = (id) => {
+  const handleRemoveFavorite = async (id) => {
     setSelectedSortOption("");
+    const { data, error } = await supabase
+      .from("favorites")
+      .delete()
+      .eq("id", id);
     setFavoritesData((prevFavorites) =>
-      prevFavorites.filter((favorite) => favorite.id !== id),
+      prevFavorites.filter((favorite) => favorite.id !== data.id),
     );
   };
 

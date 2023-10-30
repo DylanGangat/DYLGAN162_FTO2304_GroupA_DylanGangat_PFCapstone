@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GridLoader } from "react-spinners";
-
+import { supabase } from "../config/supabaseClient";
 import PodcastEpisodeCard from "../components/PodcastEpisodeCard";
 import PodcastHero from "../components/PodcastHero";
 import PodcastSeasonDropdown from "../components/PodcastSeasonDropdown";
@@ -12,10 +12,8 @@ const Podcast = () => {
   const [podcast, setPodcast] = useState([]);
   const [season, setSeason] = useState({});
   const [selectedSeasonOption, setSelectedSeasonOption] = useState("");
-  const LOCAL_STORAGE_KEY = "favorite-episodes";
-  const [favorites, setFavorites] = useState(() => {
-    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
-  });
+  const [favorites, setFavorites] = useState([]);
+  const [favoritesData, setFavoritesData] = useState([]);
 
   const { id } = useParams();
 
@@ -51,10 +49,13 @@ const Podcast = () => {
   }, [id]);
 
   useEffect(() => {
-    if (favorites.length > 0) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favorites));
-    }
-  }, [favorites]);
+    const fetchEpisodes = async () => {
+      const { data } = await supabase.from("favorites").select("*");
+      setFavorites(data);
+    };
+
+    fetchEpisodes();
+  }, [favoritesData]);
 
   if (error) {
     return (
@@ -111,8 +112,8 @@ const Podcast = () => {
                         podcast={podcast}
                         season={season}
                         episodeData={episode}
-                        favorites={favorites}
-                        setFavorites={setFavorites}
+                        favoritesData={favoritesData}
+                        setFavoritesData={setFavoritesData}
                       />
                     ))}
                 </div>
