@@ -1,16 +1,26 @@
 # Wavify - Podcast App
 
-Wavify is a podcast app that allows users to browse various podcast shows, play episodes, and track their favorite episodes.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/58ab4af8-78f1-4d6b-9a96-70194b95b471/deploy-status)](https://app.netlify.com/sites/wavifypodcast/deploys)
+
+Wavify is a podcast app that allows users to login, browse various podcast shows, play episodes, and track their favorite episodes.
+
+wavifypodcast -
+[https://wavifypodcast.netlify.app/](https://wavifypodcast.netlify.app/)
 
 ## Table of Contents
 
 - [Wavify - Podcast App](#wavify---podcast-app)
   - [Table of Contents](#table-of-contents)
+    - [Login Auth Page Design](#login-auth-page-design)
     - [Home Page Design](#home-page-design)
     - [Podcast Page Design](#podcast-page-design)
     - [Favorites Page Design](#favorites-page-design)
   - [Features](#features)
   - [Installation](#installation)
+
+### Login Auth Page Design
+
+![Wavify Auth Design Screenshot](./public/login-auth-page.webp)
 
 ### Home Page Design
 
@@ -26,6 +36,7 @@ Wavify is a podcast app that allows users to browse various podcast shows, play 
 
 ## Features
 
+- **User Authentication with Supabase**: Allow users to securely log in and out of the app using Supabase authentication.
 - **Browse Podcast Shows**: Explore a wide range of podcast shows with detailed information.
 - **Play Episodes**: Listen to podcast episodes directly within the app.
 - **Track Favorites**: Mark your favorite episodes and save them for later.
@@ -53,5 +64,7 @@ To get started with Wavify, follow these simple steps:
    ```bash
    npm run dev
    ```
+
+   **Author:** Dylan Gangat 🙋‍♂️
 
    Thank you for using Wavify! If you have any questions or need assistance, please don't hesitate to contact me. Happy podcasting! 🎧🎙️
