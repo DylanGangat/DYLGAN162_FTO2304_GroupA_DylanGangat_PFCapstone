@@ -16,7 +16,7 @@ const CarouselCard = ({ card, handleGenreFilter }) => {
   };
 
   return (
-    <div className="min-w-255 overflow-hidden rounded-lg">
+    <div className="min-w-255 max-w-255 overflow-hidden rounded-lg">
       <div className="overflow-hidden">
         <Link to={`/podcast/${id}`}>
           <img
@@ -38,7 +38,6 @@ const CarouselCard = ({ card, handleGenreFilter }) => {
         </Link>
 
         <span className="text-sm font-bold">{`Seasons: ${seasons}`}</span>
-        {/* <p className="mt-4">{`${description.slice(0, 55)}...`}</p> */}
         <div className="mt-3 flex flex-wrap gap-2 text-sm font-semibold">
           {genres.map((genre) => (
             <span
