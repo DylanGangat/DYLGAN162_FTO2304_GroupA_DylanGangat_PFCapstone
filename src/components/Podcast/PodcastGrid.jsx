@@ -38,7 +38,7 @@ const PodcastGrid = () => {
   const handleGenreFilter = (genreId) => {
     setSelectedSortOption("");
 
-    setPodcasts(podcasts.filter((podcast) => podcast.genres.includes(genreId)));
+    setPodcasts(podcastData.filter((podcast) => podcast.genres.includes(genreId)));
 
     scrollToRef.current.scrollIntoView({
       behavior: "smooth",
