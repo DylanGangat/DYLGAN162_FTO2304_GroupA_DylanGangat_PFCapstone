@@ -11,9 +11,15 @@ const Header = () => {
 
   useEffect(() => {
     const getUserData = async () => {
-      const result = await supabase.auth.getUser();
-      if (result.data?.user) {
-        setUser(result.data?.user);
+      try {
+        const { data, error } = await supabase.auth.getUser();
+        if (error) {
+          throw new Error(error.message);
+        }
+        
+        setUser(data.user);
+      } catch (error) {
+        console.error(error);
       }
     };
 

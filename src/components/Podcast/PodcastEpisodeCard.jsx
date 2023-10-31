@@ -34,10 +34,18 @@ const PodcastEpisodeCard = ({
 
     // Add newFavorite to supabase database
     const handleSubmit = async () => {
-      const { data } = await supabase
-        .from("favorites")
-        .insert([{ ...newFavorite }])
-        .select();
+      try {
+        const { error } = await supabase
+          .from("favorites")
+          .insert([{ ...newFavorite }])
+          .select();
+
+        if (error) {
+          throw new Error(error.message);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     if (!isDuplicate) {

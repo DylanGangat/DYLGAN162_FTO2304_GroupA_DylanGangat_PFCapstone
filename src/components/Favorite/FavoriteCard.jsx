@@ -21,13 +21,20 @@ const FavoriteCard = ({
 
   const handleRemoveFavorite = async (id) => {
     setSelectedSortOption("");
-    const { data, error } = await supabase
-      .from("favorites")
-      .delete()
-      .eq("id", id);
-    setFavoritesData((prevFavorites) =>
-      prevFavorites.filter((favorite) => favorite.id !== data.id),
-    );
+    try {
+      const { data, error } = await supabase
+        .from("favorites")
+        .delete()
+        .eq("id", id);
+      if (error) {
+        throw new Error(error.message);
+      }
+      setFavoritesData((prevFavorites) =>
+        prevFavorites.filter((favorite) => favorite.id !== data.id),
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

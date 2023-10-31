@@ -10,9 +10,16 @@ const Favorite = () => {
 
   useEffect(() => {
     const fetchEpisodes = async () => {
-      const { data } = await supabase.from("favorites").select("*");
+      try {
+        const { data, error } = await supabase.from("favorites").select("*");
+        if (error) {
+          throw new Error(error.message);
+        }
 
-      setFavorites(data);
+        setFavorites(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchEpisodes();

@@ -50,8 +50,16 @@ const Podcast = () => {
 
   useEffect(() => {
     const fetchEpisodes = async () => {
-      const { data } = await supabase.from("favorites").select("*");
-      setFavorites(data);
+      try {
+        const { data } = await supabase.from("favorites").select("*");
+        if (error) {
+          throw new Error(error.message);
+        }
+
+        setFavorites(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchEpisodes();
