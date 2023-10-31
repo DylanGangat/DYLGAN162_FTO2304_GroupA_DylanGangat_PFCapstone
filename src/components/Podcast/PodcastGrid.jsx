@@ -36,12 +36,9 @@ const PodcastGrid = () => {
   };
 
   const handleGenreFilter = (genreId) => {
-    setSearchInput("");
     setSelectedSortOption("");
 
-    setPodcasts(
-      podcastData.filter((podcast) => podcast.genres.includes(genreId)),
-    );
+    setPodcasts(podcasts.filter((podcast) => podcast.genres.includes(genreId)));
 
     scrollToRef.current.scrollIntoView({
       behavior: "smooth",
@@ -61,12 +58,11 @@ const PodcastGrid = () => {
   };
 
   const handleSortFilter = (value) => {
-    setSearchInput("");
 
     setSelectedSortOption(value);
 
     if (value === "az") {
-      const result = podcastData
+      const result = podcasts
         .map((podcast) => podcast)
         .sort((a, b) => a.title.localeCompare(b.title));
 
@@ -74,7 +70,7 @@ const PodcastGrid = () => {
     }
 
     if (value === "za") {
-      const result = podcastData
+      const result = podcasts
         .map((podcast) => podcast)
         .sort((a, b) => b.title.localeCompare(a.title));
 
@@ -82,7 +78,7 @@ const PodcastGrid = () => {
     }
 
     if (value === "ascending") {
-      const result = podcastData
+      const result = podcasts
         .map((podcast) => podcast)
         .sort(
           (a, b) =>
@@ -93,7 +89,7 @@ const PodcastGrid = () => {
     }
 
     if (value === "descending") {
-      const result = podcastData
+      const result = podcasts
         .map((podcast) => podcast)
         .sort(
           (a, b) =>
