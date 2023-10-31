@@ -1,8 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
-// import { v4 as uuid } from "uuid";
-import { supabase } from "../config/supabaseClient";
+import { supabase } from "../../config/supabaseClient";
 
 const PodcastEpisodeCard = ({
   episodeData,

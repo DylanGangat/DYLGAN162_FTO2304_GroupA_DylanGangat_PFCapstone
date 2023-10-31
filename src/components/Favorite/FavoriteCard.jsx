@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { supabase } from "../config/supabaseClient";
+import { supabase } from "../../config/supabaseClient";
 
 const FavoriteCard = ({
   favorite,

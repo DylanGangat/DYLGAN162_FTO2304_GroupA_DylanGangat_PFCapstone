@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GridLoader } from "react-spinners";
 import { supabase } from "../config/supabaseClient";
-import PodcastEpisodeCard from "../components/PodcastEpisodeCard";
-import PodcastHero from "../components/PodcastHero";
-import PodcastSeasonDropdown from "../components/PodcastSeasonDropdown";
+import PodcastEpisodeCard from "../components/Podcast/PodcastEpisodeCard";
+import PodcastHero from "../components/Podcast/PodcastHero";
+import PodcastSeasonDropdown from "../components/Podcast/PodcastSeasonDropdown";
 
 const Podcast = () => {
   const [loading, setLoading] = useState(false);

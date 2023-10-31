@@ -1,17 +1,11 @@
+import { SORTING_OPTIONS } from "../../constants";
+
 const PodcastFilterPanel = ({
   handleSearchFilter,
   searchInput,
   handleSortFilter,
   selectedSortOption,
 }) => {
-  const SORTING_OPTIONS = [
-    { value: "", label: "Choose Order" },
-    { value: "az", label: "A-Z" },
-    { value: "za", label: "Z-A" },
-    { value: "ascending", label: "Date Updated (Ascending Order)" },
-    { value: "descending", label: "Date Updated (Decending Order)" },
-  ];
-
   return (
     <div className="mt-8 grid  gap-4 border-t-2 border-secondary pt-8 sm:auto-cols-fr sm:grid-flow-col">
       <div className="max-w-sm">

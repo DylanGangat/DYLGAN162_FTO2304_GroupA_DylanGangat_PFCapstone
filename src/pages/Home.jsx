@@ -1,4 +1,4 @@
-import PodcastGrid from "../components/PodcastGrid";
+import PodcastGrid from "../components/Podcast/PodcastGrid";
 
 const Home = () => {
   return (

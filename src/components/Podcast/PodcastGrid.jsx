@@ -3,7 +3,7 @@ import { GridLoader } from "react-spinners";
 
 import PodcastFilterPanel from "./PodcastFilterPanel";
 import PodcastCard from "./PodcastCard";
-import Carousel from "./Carousel";
+import Carousel from "../Carousel/Carousel";
 
 import Fuse from "fuse.js";
 

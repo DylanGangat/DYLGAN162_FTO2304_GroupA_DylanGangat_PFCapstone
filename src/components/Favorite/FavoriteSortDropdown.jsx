@@ -1,12 +1,6 @@
-const FavoriteSortDropdown = ({ handleSortFilter, selectedSortOption }) => {
-  const SORTING_OPTIONS = [
-    { value: "", label: "Choose Order" },
-    { value: "az", label: "A-Z" },
-    { value: "za", label: "Z-A" },
-    { value: "ascending", label: "Date Updated (Ascending Order)" },
-    { value: "descending", label: "Date Updated (Decending Order)" },
-  ];
+import { SORTING_OPTIONS } from "../../constants";
 
+const FavoriteSortDropdown = ({ handleSortFilter, selectedSortOption }) => {
   return (
     <div className="mx-auto mr-0 mt-8 max-w-xs">
       <label

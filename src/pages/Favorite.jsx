@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import FavoriteCard from "../components/FavoriteCard";
-import FavoriteSortDropdown from "../components/FavoriteSortDropdown";
+import FavoriteCard from "../components/Favorite/FavoriteCard";
+import FavoriteSortDropdown from "../components/Favorite/FavoriteSortDropdown";
 import { supabase } from "../config/supabaseClient";
 
 const Favorite = () => {

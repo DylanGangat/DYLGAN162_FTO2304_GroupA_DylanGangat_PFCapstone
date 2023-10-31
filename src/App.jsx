@@ -3,8 +3,8 @@ import "./App.css";
 import Home from "./pages/Home";
 import Podcast from "./pages/Podcast";
 import Favorite from "./pages/Favorite";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import LoginAuth from "./pages/LoginAuth";
 
 function App() {
