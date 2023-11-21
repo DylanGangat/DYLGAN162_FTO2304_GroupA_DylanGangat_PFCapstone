@@ -1,34 +1,15 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWaveSquare } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
 import { supabase } from "../../config/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
-  const [user, setUser] = useState(null);
+const Header = ({ userId, setUserId }) => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const { data, error } = await supabase.auth.getUser();
-        if (error) {
-          throw new Error(error.message);
-        }
-
-        setUser(data.user);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getUserData();
-  }, []);
 
   const handleSignOut = async () => {
     supabase.auth.signOut();
-    setUser(null);
+    setUserId("");
     navigate("/");
   };
 
@@ -63,7 +44,7 @@ const Header = () => {
               <Link to="/favorite">FAVORITES</Link>
             </li>
 
-            {user && (
+            {userId && (
               <button
                 className="inline-flex rounded-lg bg-secondary px-3 py-2 transition duration-300 hover:bg-accent-500
            focus:bg-accent-500"

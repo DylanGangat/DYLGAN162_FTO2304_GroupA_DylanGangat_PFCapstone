@@ -66,6 +66,20 @@ To get started with Wavify, follow these simple steps:
    npm run dev
    ```
 
+4. Dummy login details
+
+   Email:
+
+   ```bash
+   wavify@gmail.com
+   ```
+
+   Password:
+
+   ```bash
+   wavify
+   ```
+
    **Author:** Dylan Gangat 🙋‍♂️
 
    Thank you for using Wavify! If you have any questions or need assistance, please don't hesitate to contact me. Happy podcasting! 🎧🎙️

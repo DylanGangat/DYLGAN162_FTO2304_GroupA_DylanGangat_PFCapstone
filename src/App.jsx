@@ -30,7 +30,7 @@ function App() {
   }, []);
   return (
     <>
-      <Header />
+      <Header userId={userId} setUserId={setUserId} />
 
       <main className="min-h-custom bg-background font-body text-body selection:bg-secondary selection:text-white">
         <Routes>
