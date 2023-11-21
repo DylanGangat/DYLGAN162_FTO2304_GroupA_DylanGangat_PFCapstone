@@ -9,6 +9,7 @@ const PodcastEpisodeCard = ({
   podcast,
   favoritesData,
   setFavoritesData,
+  userId,
 }) => {
   const { title, description, file, episode } = episodeData;
 
@@ -22,6 +23,7 @@ const PodcastEpisodeCard = ({
       episode: episode.episode,
       description: episode.description,
       file: episode.file,
+      user_id: userId,
     };
 
     const isDuplicate = favoritesData.some((item) => {

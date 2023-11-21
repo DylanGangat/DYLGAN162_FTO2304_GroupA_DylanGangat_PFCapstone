@@ -3,7 +3,7 @@ import FavoriteCard from "../components/Favorite/FavoriteCard";
 import FavoriteSortDropdown from "../components/Favorite/FavoriteSortDropdown";
 import { supabase } from "../config/supabaseClient";
 
-const Favorite = () => {
+const Favorite = ({ userId }) => {
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [favorites, setFavorites] = useState([]);
   const [favoritesData, setFavoritesData] = useState(favorites);
@@ -11,7 +11,10 @@ const Favorite = () => {
   useEffect(() => {
     const fetchEpisodes = async () => {
       try {
-        const { data, error } = await supabase.from("favorites").select("*");
+        const { data, error } = await supabase
+          .from("favorites")
+          .select("*")
+          .eq("user_id", userId);
         if (error) {
           throw new Error(error.message);
         }
@@ -23,7 +26,7 @@ const Favorite = () => {
     };
 
     fetchEpisodes();
-  }, [favoritesData]);
+  }, [favoritesData, userId]);
 
   const handleSortFilter = (value) => {
     setSelectedSortOption(value);
@@ -87,6 +90,7 @@ const Favorite = () => {
                 favorite={favorite}
                 setFavoritesData={setFavoritesData}
                 setSelectedSortOption={setSelectedSortOption}
+                userId={userId}
               />
             ))}
           </div>

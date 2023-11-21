@@ -1,13 +1,33 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import Podcast from "./pages/Podcast";
 import Favorite from "./pages/Favorite";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import LoginAuth from "./pages/LoginAuth";
+import { supabase } from "./config/supabaseClient";
 
 function App() {
+  const [userId, setUserId] = useState("");
+ 
+  useEffect(() => {
+    // Fetch the current session and set it
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUserId(session.user.id);
+    });
+
+    // Subscribe to auth state changes and set the session when it changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUserId(session.user.id);
+    });
+
+    // Return a cleanup function that unsubscribes from the auth state changes
+    return () => subscription.unsubscribe();
+  }, []);
   return (
     <>
       <Header />
@@ -16,8 +36,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginAuth />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/podcast/:id" element={<Podcast />} />
-          <Route path="/favorite" element={<Favorite />} />
+          <Route path="/podcast/:id" element={<Podcast userId={userId} />} />
+          <Route path="/favorite" element={<Favorite userId={userId} />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>

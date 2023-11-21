@@ -38,7 +38,9 @@ const PodcastGrid = () => {
   const handleGenreFilter = (genreId) => {
     setSelectedSortOption("");
 
-    setPodcasts(podcastData.filter((podcast) => podcast.genres.includes(genreId)));
+    setPodcasts(
+      podcastData.filter((podcast) => podcast.genres.includes(genreId)),
+    );
 
     scrollToRef.current.scrollIntoView({
       behavior: "smooth",
@@ -58,7 +60,6 @@ const PodcastGrid = () => {
   };
 
   const handleSortFilter = (value) => {
-
     setSelectedSortOption(value);
 
     if (value === "az") {

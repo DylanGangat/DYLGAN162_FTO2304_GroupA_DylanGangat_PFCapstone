@@ -6,7 +6,7 @@ import PodcastEpisodeCard from "../components/Podcast/PodcastEpisodeCard";
 import PodcastHero from "../components/Podcast/PodcastHero";
 import PodcastSeasonDropdown from "../components/Podcast/PodcastSeasonDropdown";
 
-const Podcast = () => {
+const Podcast = ({ userId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [podcast, setPodcast] = useState([]);
@@ -122,6 +122,7 @@ const Podcast = () => {
                         episodeData={episode}
                         favoritesData={favoritesData}
                         setFavoritesData={setFavoritesData}
+                        userId={userId}
                       />
                     ))}
                 </div>

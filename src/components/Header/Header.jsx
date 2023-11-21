@@ -16,7 +16,7 @@ const Header = () => {
         if (error) {
           throw new Error(error.message);
         }
-        
+
         setUser(data.user);
       } catch (error) {
         console.error(error);

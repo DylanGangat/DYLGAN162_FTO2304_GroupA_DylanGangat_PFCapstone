@@ -6,6 +6,7 @@ const FavoriteCard = ({
   favorite,
   setFavoritesData,
   setSelectedSortOption,
+  userId,
 }) => {
   const {
     podcast,
