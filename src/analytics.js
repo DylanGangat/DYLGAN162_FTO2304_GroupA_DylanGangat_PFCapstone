@@ -1,4 +1,4 @@
-import { ReactGA } from "react-ga4";
+import ReactGA from "react-ga4";
 
 export const initGA = () => {
   ReactGA.initialize("G-0ZXC9KLECP");
