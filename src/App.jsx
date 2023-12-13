@@ -8,11 +8,15 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import LoginAuth from "./pages/LoginAuth";
 import { supabase } from "./config/supabaseClient";
+import { initGA, logPageView } from "./analytics";
 
 function App() {
   const [userId, setUserId] = useState("");
- 
+
   useEffect(() => {
+    // Tracking for google analytics
+    initGA();
+    logPageView();
     // Fetch the current session and set it
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUserId(session.user.id);
@@ -28,6 +32,7 @@ function App() {
     // Return a cleanup function that unsubscribes from the auth state changes
     return () => subscription.unsubscribe();
   }, []);
+
   return (
     <>
       <Header userId={userId} setUserId={setUserId} />
